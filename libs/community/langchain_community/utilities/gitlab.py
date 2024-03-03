@@ -195,6 +195,21 @@ class GitLabAPIWrapper(BaseModel):
         except Exception as e:
             return "Unable to make comment due to error:\n" + str(e)
 
+    def list_repository_tree(self, path: str = '', recursive: bool = False) -> List[Dict[str, Any]]:
+        """
+        Lists files and directories in a repository or a specified path in the repository.
+        Parameters:
+            path (str): The path within the repository to list items from. Defaults to the root of the repository.
+            recursive (bool): Whether to get the tree recursively.
+        Returns:
+            List[Dict[str, Any]]: A list of dictionaries, each representing a file or directory in the repository.
+        """
+        try:
+            items = self.gitlab_repo_instance.repository_tree(path=path, ref=self.gitlab_branch, recursive=recursive)
+            return items
+        except Exception as e:
+            return f"Unable to list repository tree due to error:\n{e}"
+
     def create_file(self, file_query: str) -> str:
         """
         Creates a new file on the gitlab repo
@@ -317,6 +332,8 @@ class GitLabAPIWrapper(BaseModel):
             return self.create_file(query)
         elif mode == "create_pull_request":
             return self.create_pull_request(query)
+        elif mode == "list_repository_tree":
+            return self.list_repository_tree()
         elif mode == "read_file":
             return self.read_file(query)
         elif mode == "update_file":

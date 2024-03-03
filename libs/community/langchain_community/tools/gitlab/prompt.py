@@ -68,3 +68,15 @@ new contents
 DELETE_FILE_PROMPT = """
 This tool is a wrapper for the GitLab API, useful when you need to delete a file in a GitLab repository. Simply pass in the full file path of the file you would like to delete. **IMPORTANT**: the path must not start with a slash
 """
+
+LIST_REPOSITORY_TREE_PROMPT = """
+This tool is a wrapper for the GitLab API, useful when you need to list the files and directories in a GitLab repository. You can specify a path within the repository to list items from that specific path, and you can also choose to list the contents recursively. **VERY IMPORTANT**: Your input to this tool MUST follow these rules:
+
+- Optionally, specify the path from which to list the files and directories. Leave it blank to list items from the root of the repository.
+- To list contents recursively, add 'recursive=True' on a new line after the path.
+
+For example, if you would like to list all items in the path 'src/components' recursively, you would pass in the following string:
+
+src/components
+recursive=True
+"""

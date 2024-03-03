@@ -58,6 +58,11 @@ class GitLabToolkit(BaseToolkit):
                 "description": CREATE_PULL_REQUEST_PROMPT,
             },
             {
+                "mode": "list_repository_tree",
+                "name": "List Repository Tree",
+                "description": LIST_REPOSITORY_TREE_PROMPT,
+            },
+            {
                 "mode": "create_file",
                 "name": "Create File",
                 "description": CREATE_FILE_PROMPT,
